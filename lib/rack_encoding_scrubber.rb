@@ -16,6 +16,7 @@ class RackEncodingScrubber
       %w[QUERY_STRING REQUEST_PATH PATH_INFO QUERY_STRING REQUEST_URI ORIGINAL_FULLPATH].each do |header|
         if env[header] and env[header]["%u00"]
           env[header].gsub!(/%u00\h{0,2}/, "")
+          env[header].gsub!(/%\h{0,2}/,"")
         end
       end
     end
